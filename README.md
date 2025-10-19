@@ -1,36 +1,210 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏠 LocalAid - Platforma Pomocy Sąsiedzkiej
 
-## Getting Started
+> Mikroogłoszenia pomocy sąsiedzkiej - Next.js Full-Stack Application
 
-First, run the development server:
+## 📋 O projekcie
+
+LocalAid to platforma łącząca sąsiadów, którzy potrzebują pomocy z tymi, którzy mogą jej udzielić. Pożycz narzędzie, pomóż w zakupach, lub znajdź kogoś kto pomoże w transporcie.
+
+## 🛠️ Stack Technologiczny
+
+### Frontend
+- **Next.js 15.5** - React framework z App Router + Turbopack
+- **React 19** - najnowsza wersja React
+- **TypeScript 5** - typowanie
+- **Tailwind CSS v4** - stylowanie
+- **NextAuth v5** - autentykacja
+
+### Backend
+- **Next.js API Routes** - backend API
+- **Prisma ORM** - zarządzanie bazą danych
+- **SQLite** - baza danych (zero konfiguracji!)
+- **bcryptjs** - hashowanie haseł
+- **Zod** - walidacja danych
+
+## 🚀 Szybki Start
+
+### 1. Klonowanie repozytorium
+
+```bash
+git clone https://github.com/twoj-username/localaid.git
+cd localaid
+```
+
+### 2. Instalacja zależności
+
+```bash
+npm install
+```
+
+### 3. Konfiguracja środowiska
+
+Skopiuj `.env.example` do `.env`:
+
+```bash
+cp .env.example .env
+```
+
+Plik `.env` jest już skonfigurowany dla lokalnego developmentu.
+
+### 4. Baza danych
+
+**Projekt już zawiera bazę z przykładowymi danymi!** 
+
+Jeśli chcesz zresetować bazę:
+
+```bash
+npm run db:reset
+npm run db:seed
+```
+
+### 5. Uruchomienie aplikacji
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Otwórz [http://localhost:3000](http://localhost:3000) w przeglądarce.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 👤 Konta Testowe
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Aplikacja zawiera 3 przykładowych użytkowników:
 
-## Learn More
+| Email | Hasło | Opis |
+|-------|-------|------|
+| `jan.kowalski@example.com` | `password123` | Ma ogłoszenia o narzędziach |
+| `anna.nowak@example.com` | `password123` | Oferuje pomoc w zakupach |
+| `piotr.wisniewski@example.com` | `password123` | Prosi o pomoc w transporcie |
 
-To learn more about Next.js, take a look at the following resources:
+## 📊 Funkcje
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### ✅ Zaimplementowane (MVP)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- ✅ **Autentykacja**
+  - Rejestracja użytkowników
+  - Logowanie (email + hasło)
+  - Wylogowanie
+  - Ochrona chronionych stron
 
-## Deploy on Vercel
+- ✅ **Baza danych**
+  - SQLite z Prisma ORM
+  - Modele: User, Post, Comment, Rating
+  - Seed z przykładowymi danymi
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 🚧 W planach
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 📝 Dodawanie ogłoszeń
+- 🔍 Filtrowanie po kategorii i lokalizacji
+- 💬 System komentarzy
+- ⭐ Oceny użytkowników
+- 🗺️ Mapa z lokalizacją ogłoszeń
+- 👤 Profile użytkowników
+
+## 📁 Struktura projektu
+
+```
+localaid/
+├── prisma/
+│   ├── schema.prisma      # Modele bazy danych
+│   ├── seed.js            # Przykładowe dane
+│   └── dev.db             # SQLite database (88KB)
+│
+├── src/
+│   ├── app/
+│   │   ├── api/           # Backend API Routes
+│   │   ├── auth/          # Strony autentykacji
+│   │   ├── layout.tsx     # Root layout
+│   │   └── page.tsx       # Strona główna
+│   │
+│   ├── components/        # React components
+│   │   └── providers/
+│   │
+│   ├── lib/
+│   │   ├── prisma.ts      # Prisma client
+│   │   ├── auth.ts        # NextAuth config
+│   │   └── utils.ts       # Helper functions
+│   │
+│   ├── types/             # TypeScript types
+│   └── constants/         # Kategorie i stałe
+│
+├── .env                   # Konfiguracja (gitignored)
+├── .env.example           # Przykładowa konfiguracja
+└── package.json
+```
+
+## 🔧 Przydatne komendy
+
+```bash
+# Development
+npm run dev              # Uruchom serwer dev
+
+# Database
+npm run db:generate      # Generuj Prisma Client
+npm run db:push          # Wypchaj schemat do bazy
+npm run db:seed          # Dodaj przykładowe dane
+npm run db:reset         # Zresetuj bazę danych
+npm run db:studio        # Otwórz Prisma Studio (GUI)
+
+# Build
+npm run build            # Build produkcyjny
+npm start                # Uruchom build produkcyjny
+
+# Lint
+npm run lint             # Sprawdź kod
+```
+
+## 🗄️ Prisma Studio
+
+Podgląd bazy danych w GUI:
+
+```bash
+npx prisma studio
+```
+
+Otwórz [http://localhost:5555](http://localhost:5555)
+
+## 🐛 Troubleshooting
+
+### Problem: "Cannot find module @prisma/client"
+```bash
+npx prisma generate
+```
+
+### Problem: "Database file doesn't exist"
+```bash
+npx prisma db push
+npm run db:seed
+```
+
+### Problem: Port 3000 zajęty
+```bash
+npm run dev -- -p 3001
+```
+
+## 📝 Zmienne środowiskowe
+
+```env
+# Database
+DATABASE_URL="file:./dev.db"
+
+# NextAuth
+NEXTAUTH_URL="http://localhost:3000"
+AUTH_SECRET="your-secret-key-here"
+```
+
+Wygeneruj secret key:
+```bash
+openssl rand -base64 32
+```
+
+## 🤝 Contributing
+
+Ten projekt został stworzony jako projekt inżynierski. Pull requesty są mile widziane!
+
+## 📄 Licencja
+
+MIT
+
+## 👨‍💻 Autor
+
+Projekt inżynierski - LocalAid
