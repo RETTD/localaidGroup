@@ -27,7 +27,7 @@ LocalAid to platforma łącząca sąsiadów, którzy potrzebują pomocy z tymi, 
 ### 1. Klonowanie repozytorium
 
 ```bash
-git clone https://github.com/twoj-username/localaid.git
+git clone <this.repo.link>
 cd localaid
 ```
 
