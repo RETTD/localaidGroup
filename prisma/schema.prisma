@@ -59,6 +59,8 @@ model User {
   comments      Comment[]
   ratingsGiven  Rating[]  @relation("RatingsGiven")
   ratingsReceived Rating[] @relation("RatingsReceived")
+
+  @@index([latitude, longitude]) // Index dla wyszukiwania geolokalizacyjnego
 }
 
 model VerificationToken {
@@ -85,6 +87,12 @@ model Post {
 
   author   User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
   comments Comment[]
+
+  @@index([category]) // Index dla filtrowania po kategorii
+  @@index([status]) // Index dla filtrowania po statusie
+  @@index([createdAt]) // Index dla sortowania po dacie
+  @@index([authorId]) // Index dla postów użytkownika
+  @@index([latitude, longitude]) // Index dla wyszukiwania geolokalizacyjnego
 }
 
 model Comment {
@@ -97,6 +105,10 @@ model Comment {
 
   post   Post @relation(fields: [postId], references: [id], onDelete: Cascade)
   author User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@index([postId]) // Index dla komentarzy posta
+  @@index([authorId]) // Index dla komentarzy użytkownika
+  @@index([createdAt]) // Index dla sortowania po dacie
 }
 
 model Rating {
@@ -112,4 +124,6 @@ model Rating {
   reviewed User @relation("RatingsReceived", fields: [reviewedId], references: [id], onDelete: Cascade)
 
   @@unique([reviewerId, reviewedId])
+  @@index([reviewedId]) // Index dla ocen użytkownika
+  @@index([rating]) // Index dla filtrowania po ocenie
 }
