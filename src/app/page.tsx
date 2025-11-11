@@ -83,6 +83,23 @@ export default async function Home() {
             LocalAid to platforma łącząca sąsiadów, którzy potrzebują pomocy z tymi, którzy mogą jej udzielić.
             Pożycz narzędzie, pomóż w zakupach, lub znajdź kogoś kto pomoże w transporcie.
           </p>
+          
+          {/* CTA Buttons */}
+          <div className="flex gap-4 mb-4">
+            <Link
+              href="/posts/create"
+              className="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 font-semibold"
+            >
+              ➕ Dodaj ogłoszenie
+            </Link>
+            <Link
+              href="/posts"
+              className="bg-gray-200 text-gray-800 px-6 py-3 rounded-md hover:bg-gray-300 font-semibold"
+            >
+              🔍 Przeglądaj ogłoszenia
+            </Link>
+          </div>
+
           {!session && (
             <div className="bg-blue-50 border border-blue-200 rounded-md p-4">
               <p className="text-sm font-semibold text-blue-900 mb-2">🧪 Demo - konta testowe:</p>
@@ -90,6 +107,40 @@ export default async function Home() {
               <p className="text-sm text-blue-800">Hasło: <code className="bg-white px-2 py-1 rounded">password123</code></p>
             </div>
           )}
+        </div>
+
+        {/* Jak to działa? Section */}
+        <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg shadow p-8 mb-8">
+          <h2 className="text-2xl font-bold mb-6 text-center">🤔 Jak to działa?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="text-center">
+              <div className="bg-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-md">
+                <span className="text-3xl">📝</span>
+              </div>
+              <h3 className="font-semibold text-lg mb-2">1. Dodaj ogłoszenie</h3>
+              <p className="text-gray-600 text-sm">
+                Opisz czego potrzebujesz lub co możesz zaoferować swoim sąsiadom
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="bg-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-md">
+                <span className="text-3xl">💬</span>
+              </div>
+              <h3 className="font-semibold text-lg mb-2">2. Znajdź pomoc</h3>
+              <p className="text-gray-600 text-sm">
+                Przeglądaj ogłoszenia w swojej okolicy i komentuj te, które Cię interesują
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="bg-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-md">
+                <span className="text-3xl">⭐</span>
+              </div>
+              <h3 className="font-semibold text-lg mb-2">3. Oceń sąsiada</h3>
+              <p className="text-gray-600 text-sm">
+                Po udanej współpracy zostaw opinię i buduj zaufaną społeczność
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Stats */}
