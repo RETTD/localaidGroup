@@ -2,6 +2,7 @@
 
 import React from "react";
 import { BellIcon } from "@heroicons/react/24/outline";
+import Button from "@/components/ui/Button";
 
 export default function Navbar() {
   return (
@@ -30,16 +31,16 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Prawa strona – powiadomienia + user */}
+        {/* Prawa strona */}
         <div className="ml-auto flex items-center gap-4">
-          <button
-            type="button"
-            className="relative rounded-full p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition"
-          >
-            <BellIcon className="h-5 w-5" />
-            <span className="absolute right-1 top-1 h-2 w-2 rounded-full bg-rose-500"></span>
-          </button>
+          <Button
+            variant="icon"
+            className="h-10 w-10 p-0 flex items-center justify-center"
+            iconLeft={<BellIcon className="h-5 w-5" />}
+            />
 
+
+          {/* User */}
           <div className="flex items-center gap-3">
             <div className="text-right">
               <div className="text-sm font-medium text-slate-800">
@@ -49,6 +50,7 @@ export default function Navbar() {
                 jan.kowalski@example.com
               </div>
             </div>
+
             <div className="h-9 w-9 rounded-full bg-gradient-to-tr from-indigo-500 to-emerald-400 text-white flex items-center justify-center text-sm font-semibold shadow-sm">
               JK
             </div>

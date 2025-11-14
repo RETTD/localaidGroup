@@ -2,7 +2,8 @@
 
 import React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import Button from "@/components/ui/Button";
 import {
   HomeIcon,
   MapIcon,
@@ -39,6 +40,7 @@ export default function Sidebar({
   onToggle: () => void;
 }) {
   const pathname = usePathname();
+  const router = useRouter();
 
   const renderItem = (item: NavItem) => {
     const Icon = item.icon;
@@ -49,7 +51,7 @@ export default function Sidebar({
       <Link
         key={item.href}
         href={item.href}
-        title={item.label} // prosty tooltip w trybie zwiniętym
+        title={item.label}
         className={`group flex items-center rounded-lg px-3 py-2 text-sm font-medium transition
           ${
             isActive
@@ -77,7 +79,6 @@ export default function Sidebar({
         ${collapsed ? "w-[72px]" : "w-64"}
       `}
     >
-      {/* Górny pasek z przyciskiem zwijania */}
       <div className="flex h-16 items-center justify-end px-3">
         <button
           onClick={onToggle}
@@ -103,15 +104,16 @@ export default function Sidebar({
 
       {/* Stały bottom bar – zawsze widoczny */}
       <div className="border-t border-slate-200 p-3">
-        <Link
-          href="/posts/create"
-          className={`flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-3 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-500 transition
-            ${collapsed ? "px-0" : ""}
-          `}
+        <Button
+          variant="primary"
+          iconLeft={<PlusIcon className="h-5 w-5" />}
+          fullWidth={!collapsed}
+          className={collapsed ? "h-10 w-10 p-0 mx-auto" : "w-full"}
+          onClick={() => router.push("/posts/create")}
+          title="Dodaj ogłoszenie"
         >
-          <PlusIcon className="h-5 w-5" />
-          {!collapsed && <span>Dodaj ogłoszenie</span>}
-        </Link>
+          {!collapsed && "Dodaj ogłoszenie"}
+        </Button>
       </div>
     </aside>
   );
